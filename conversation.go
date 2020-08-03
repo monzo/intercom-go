@@ -47,10 +47,11 @@ type ConversationRating struct {
 
 // A ConversationMessage is the message that started the conversation rendered for presentation
 type ConversationMessage struct {
-	Subject string         `json:"subject"`
-	Body    string         `json:"body"`
-	Author  MessageAddress `json:"author"`
-	URL     string         `json:"url"`
+	Subject     string         `json:"subject"`
+	Body        string         `json:"body"`
+	Author      MessageAddress `json:"author"`
+	URL         string         `json:"url"`
+	Attachments []Attachment   `json:"attachments"`
 }
 
 // A ConversationPartList lists the subsequent Conversation Parts
@@ -60,14 +61,20 @@ type ConversationPartList struct {
 
 // A ConversationPart is a Reply, Note, or Assignment to a Conversation
 type ConversationPart struct {
-	ID         string         `json:"id"`
-	PartType   string         `json:"part_type"`
-	Body       string         `json:"body"`
-	CreatedAt  int64          `json:"created_at"`
-	UpdatedAt  int64          `json:"updated_at"`
-	NotifiedAt int64          `json:"notified_at"`
-	AssignedTo Admin          `json:"assigned_to"`
-	Author     MessageAddress `json:"author"`
+	ID          string         `json:"id"`
+	PartType    string         `json:"part_type"`
+	Body        string         `json:"body"`
+	CreatedAt   int64          `json:"created_at"`
+	UpdatedAt   int64          `json:"updated_at"`
+	NotifiedAt  int64          `json:"notified_at"`
+	AssignedTo  Admin          `json:"assigned_to"`
+	Author      MessageAddress `json:"author"`
+	Attachments []Attachment   `json:"attachments"`
+}
+
+type Attachment struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
 }
 
 // The state of Conversations to query
